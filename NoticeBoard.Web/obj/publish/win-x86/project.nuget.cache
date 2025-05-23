@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "aUIo+s7shmyhDuyXAlSZZYlYSDdtVB4D7fmzq1B4RpjPtUOcYw0Jl4l0zo9DbEmuVy9olH+k+JJ3LL/8EUJcNA==",
+  "success": true,
+  "projectFilePath": "F:\\repos\\NoticeBoard\\NoticeBoard.Web\\NoticeBoard.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vadym\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\6.0.6\\microsoft.aspnetcore.authentication.google.6.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}

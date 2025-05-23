@@ -1,0 +1,27 @@
+﻿@model NoticeBoard.Web.Models.Announcement
+
+<h2>@Model.Title</h2>
+
+<div class="mb-3">
+    <strong>Опис:</strong>
+    <p>@Model.Description</p>
+</div>
+
+<div class="mb-2">
+    <strong>Категорія:</strong> @Model.Category
+</div>
+
+<div class="mb-2">
+    <strong>Підкатегорія:</strong> @Model.SubCategory
+</div>
+
+<div class="mb-2">
+    <strong>Статус:</strong> @(Model.Status ? "Активне" : "Неактивне")
+</div>
+
+<div class="mb-2">
+    <strong>Дата створення:</strong> @Model.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати</a>
+<a asp-action="Index" class="btn btn-secondary">Назад до списку</a>

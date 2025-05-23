@@ -1,0 +1,8 @@
+F:\repos\NoticeBoard\NoticeBoard.Web\obj\Release\net6.0\PubTmp\Out\NoticeBoard.Web.exe
+F:\repos\NoticeBoard\NoticeBoard.Web\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+F:\repos\NoticeBoard\NoticeBoard.Web\obj\Release\net6.0\PubTmp\Out\appsettings.json
+F:\repos\NoticeBoard\NoticeBoard.Web\obj\Release\net6.0\PubTmp\Out\NoticeBoard.Web.dll
+F:\repos\NoticeBoard\NoticeBoard.Web\obj\Release\net6.0\PubTmp\Out\NoticeBoard.Web.deps.json
+F:\repos\NoticeBoard\NoticeBoard.Web\obj\Release\net6.0\PubTmp\Out\NoticeBoard.Web.runtimeconfig.json
+F:\repos\NoticeBoard\NoticeBoard.Web\obj\Release\net6.0\PubTmp\Out\NoticeBoard.Web.pdb
+F:\repos\NoticeBoard\NoticeBoard.Web\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.Google.dll

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NoticeBoard.Web.props" />
+</Project>

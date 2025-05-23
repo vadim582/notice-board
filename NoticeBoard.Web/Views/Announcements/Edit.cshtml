@@ -1,0 +1,76 @@
+﻿@model NoticeBoard.Web.Models.Announcement
+@{
+    var isEdit = ViewContext.RouteData.Values["action"]!.ToString() == "Edit";
+}
+
+@using NoticeBoard.Web.Models
+@{
+    var categories = CategoryData.Categories.Keys.ToList();
+}
+<h2>@(isEdit ? "Редагування" : "Створення") оголошення</h2>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="@ViewContext.RouteData.Values["action"]">
+    <div class="form-group">
+        <label>Заголовок</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Опис</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <select id="categorySelect" asp-for="Category" class="form-control" onchange="updateSubcategories()">
+            <option value="">-- Виберіть категорію --</option>
+            @foreach (var cat in categories)
+            {
+                <option value="@cat">@cat</option>
+            }
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SubCategory"></label>
+        <select id="subCategorySelect" asp-for="SubCategory" class="form-control">
+            <option value="">-- Виберіть підкатегорію --</option>
+        </select>
+        <span asp-validation-for="SubCategory" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="Status" class="form-check-input" />
+        <label asp-for="Status" class="form-check-label">Активне</label>
+    </div>
+    <button type="submit" class="btn btn-success">Зберегти</button>
+</form>
+@section Scripts {
+    <script>
+        const categoryData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(CategoryData.Categories));
+        const selectedSubCategory = '@(Model?.SubCategory ?? "")';
+
+        function updateSubcategories() {
+            const selectedCategory = document.getElementById("categorySelect").value;
+            const subCategorySelect = document.getElementById("subCategorySelect");
+            subCategorySelect.innerHTML = '<option value="">-- Виберіть підкатегорію --</option>';
+
+            if (categoryData[selectedCategory]) {
+                for (const sub of categoryData[selectedCategory]) {
+                    const opt = document.createElement("option");
+                    opt.value = sub;
+                    opt.text = sub;
+                    if (sub === selectedSubCategory) {
+                        opt.selected = true;
+                    }
+                    subCategorySelect.appendChild(opt);
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", updateSubcategories);
+        document.getElementById("categorySelect").addEventListener("change", updateSubcategories);
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

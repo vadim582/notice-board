@@ -1,0 +1,64 @@
+﻿@model List<NoticeBoard.Web.Models.Announcement>
+
+@{
+    var selectedCategory = ViewData["CurrentCategory"]?.ToString();
+    var selectedSubCategory = ViewData["CurrentSubCategory"]?.ToString();
+
+    var categoryList = CategoryData.Categories.Keys
+        .Select(c => new SelectListItem { Text = c, Value = c, Selected = (c == selectedCategory) })
+        .ToList();
+
+    var subCategoryList = !string.IsNullOrEmpty(selectedCategory) && CategoryData.Categories.ContainsKey(selectedCategory)
+        ? CategoryData.Categories[selectedCategory]
+            .Select(sc => new SelectListItem { Text = sc, Value = sc, Selected = (sc == selectedSubCategory) })
+            .ToList()
+        : new List<SelectListItem>();
+}
+
+<h2>Оголошення</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Додати</a>
+
+<form method="get" asp-action="Index" class="mb-3">
+    <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label for="Category" class="form-label">Категорія</label>
+            <select class="form-select" id="categorySelect" name="category" asp-items="categoryList"></select>
+        </div>
+        <div class="col-md-4">
+            <label for="SubCategory" class="form-label">Підкатегорія</label>
+            <select class="form-select" id="subCategorySelect" name="subCategory" asp-items="subCategoryList"></select>
+        </div>
+        <div class="col-md-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Фільтрувати</button>
+            <a asp-action="Index" class="btn btn-secondary">Очистити</a>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Заголовок</th>
+            <th>Категорія</th>
+            <th>Статус</th>
+            <th>Дата</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Category / @item.SubCategory</td>
+                <td>@(item.Status ? "Активне" : "Неактивне")</td>
+                <td>@item.CreatedDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Детальніше</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Редагувати</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

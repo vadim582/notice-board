@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/notice-board-api-v1/apis/NoticeBoardAPI",
+      "type": "apis.azure"
+    }
+  }
+}
